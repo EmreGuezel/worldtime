@@ -12,12 +12,10 @@ export default function SearchBar({ onAdd }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState<LocationData[]>([]);
 
-  // FUSE.JS AYARLARI (Bulanık Arama Motoru)
-  // useMemo: Ayarların her harf basıldığında tekrar tekrar hesaplanmasını engeller (Performans!)
   const fuse = useMemo(() => new Fuse(locations, {
-    keys: ["city", "keywords"], // Arama yapılacak alanlar
-    threshold: 0.4, // Hata toleransı (0.0 kesin eşleşme, 1.0 çok esnek. 0.4 yazım hataları için idealdir)
-    includeScore: true, // En çok benzeyeni en üste koyması için
+    keys: ["city", "keywords"],
+    threshold: 0.4,
+    includeScore: true,
   }), []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +23,7 @@ export default function SearchBar({ onAdd }: SearchBarProps) {
     setSearchTerm(text);
 
     if (text.length > 0) {
-      // Fuse.js ile metni aratıyoruz
       const searchResults = fuse.search(text);
-      // Fuse.js sonuçları kendi özel bir formatta döner, biz sadece 'item' (bizim şehrimiz) kısmını alıyoruz
       setResults(searchResults.map(result => result.item));
     } else {
       setResults([]);
@@ -47,25 +43,26 @@ export default function SearchBar({ onAdd }: SearchBarProps) {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto mb-10">
+    <div className="relative w-full max-w-md mx-auto mb-16">
       <input
         type="text"
         value={searchTerm}
         onChange={handleSearch}
         onKeyDown={handleKeyDown}
-        placeholder="Şehir veya ülke ara (Örn: Fransa, Angara...)"
-        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+        placeholder="Şehir veya ülke ara..."
+        className="w-full px-5 py-4 bg-zinc-900/50 rounded border border-zinc-800 text-amber-50 focus:outline-none focus:border-amber-700 focus:bg-zinc-900 transition-all shadow-inner placeholder-zinc-600 font-serif"
       />
 
       {results.length > 0 && (
-        <ul className="absolute z-10 w-full mt-2 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto">
+        <ul className="absolute z-10 w-full mt-2 bg-zinc-900 border border-zinc-800 rounded shadow-2xl max-h-60 overflow-y-auto">
           {results.map((loc, index) => (
             <li
               key={index}
               onClick={() => handleSelect(loc)}
-              className="px-4 py-3 hover:bg-slate-100 cursor-pointer text-slate-700 font-medium border-b last:border-b-0"
+              className="px-5 py-4 hover:bg-zinc-800 cursor-pointer text-zinc-300 font-serif border-b border-zinc-800/50 last:border-0 flex justify-between items-center transition-colors"
             >
-              {loc.city} <span className="text-sm text-slate-400 font-normal ml-2">({loc.timezone})</span>
+              <span>{loc.city}</span> 
+              <span className="text-xs text-amber-700 font-sans tracking-wider">{loc.timezone}</span>
             </li>
           ))}
         </ul>

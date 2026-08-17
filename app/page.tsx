@@ -7,13 +7,9 @@ import { LocationData } from "../data/locations";
 
 export default function Home() {
   const [globalTime, setGlobalTime] = useState<Date | null>(null);
-  
-  // Başlangıçta boş bir liste veriyoruz, çünkü önce hafızayı kontrol etmemiz gerekiyor
   const [clocks, setClocks] = useState<LocationData[]>([]);
-  // Uygulamanın hafızayı okuyup okumadığını takip eden yeni bir state (Hydration çözümü)
   const [isLoaded, setIsLoaded] = useState(false); 
 
-  // 1. ZAMAN DÖNGÜSÜ (Burası aynı kaldı)
   useEffect(() => {
     setGlobalTime(new Date()); 
     const timer = setInterval(() => {
@@ -22,39 +18,31 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // 2. HAFIZADAN OKUMA (Sayfa ilk açıldığında sadece 1 kere çalışır)
   useEffect(() => {
-    // Tarayıcının hafızasından "saved-clocks" isimli kasayı bulmaya çalışıyoruz
     const savedClocks = localStorage.getItem("saved-clocks");
-    
     if (savedClocks) {
-      // Hafızadaki veriler düz metin (String) olduğu için JSON.parse ile tekrar React'in anlayacağı listeye çeviriyoruz
       setClocks(JSON.parse(savedClocks));
     } else {
-      // Eğer kasa boşsa (kullanıcı ilk kez giriyorsa) varsayılan saatleri veriyoruz
       setClocks([
-        { city: "İstanbul", timezone: "Europe/Istanbul", keywords: [] },
+        { city: "Cenevre", timezone: "Europe/Zurich", keywords: ["cenevre", "geneva", "isviçre"] },
         { city: "Londra", timezone: "Europe/London", keywords: [] }
       ]);
     }
-    setIsLoaded(true); // "Hafızayı okudum, artık saatleri gösterebilirsin" diyoruz
+    setIsLoaded(true);
   }, []);
 
-  // 3. HAFIZAYA YAZMA (Saat listesi her değiştiğinde çalışır)
   useEffect(() => {
-    // Yanlışlıkla başlangıçtaki boş listeyi kaydetmemek için önce isLoaded kontrolü yapıyoruz
     if (isLoaded) {
-      // Listemizi JSON.stringify ile metne çevirip "saved-clocks" kasasına kilitliyoruz
       localStorage.setItem("saved-clocks", JSON.stringify(clocks));
     }
-  }, [clocks, isLoaded]); // Bu effect, "clocks" veya "isLoaded" değiştiğinde tetiklenir
+  }, [clocks, isLoaded]);
 
   const handleAddClock = (newLocation: LocationData) => {
     const isAlreadyAdded = clocks.some((clock) => clock.city === newLocation.city);
     if (!isAlreadyAdded) {
       setClocks([...clocks, newLocation]);
     } else {
-      alert(`${newLocation.city} zaten ekli!`);
+      alert(`${newLocation.city} koleksiyonunuzda zaten mevcut.`);
     }
   };
 
@@ -64,24 +52,25 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 p-8 font-sans">
+    <main className="min-h-screen p-8 md:p-16">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-center text-slate-800 mb-2">
-          Dünya Saatleri
+        {/* Başlıkta lüks fontumuzu (font-serif) ve altın rengini kullanıyoruz */}
+        <h1 className="text-4xl md:text-5xl font-serif text-center text-amber-500 mb-3 tracking-wide">
+          Chronomètre
         </h1>
-        <p className="text-center text-slate-500 mb-10">
-          Zaman dilimlerini arayın ve panonuza ekleyin
+        <div className="w-24 h-px bg-amber-500/50 mx-auto mb-4"></div>
+        <p className="text-center text-zinc-500 mb-12 font-light tracking-widest uppercase text-sm">
+          Özel Zaman Dilimi Koleksiyonu
         </p>
         
         <SearchBar onAdd={handleAddClock} />
 
-        {/* Veriler yüklenmeden önce boşluk yerine kısa bir mesaj gösteriyoruz */}
         {!isLoaded ? (
-          <div className="flex justify-center text-slate-400 font-medium">
-            Saatleriniz yükleniyor...
+          <div className="flex justify-center text-amber-500/50 font-serif italic">
+            Mekanizma kuruluyor...
           </div>
         ) : (
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-10">
             {clocks.map((clock, index) => (
               <ClockCard 
                 key={index} 
@@ -93,8 +82,8 @@ export default function Home() {
             ))}
             
             {clocks.length === 0 && (
-               <div className="text-slate-400 mt-10 text-lg">
-                 Panonuz boş. Yukarıdan yeni bir şehir ekleyebilirsiniz.
+               <div className="text-zinc-600 mt-10 font-serif italic">
+                 Koleksiyonunuz boş. Yeni bir zaman dilimi ekleyin.
                </div>
             )}
           </div>
