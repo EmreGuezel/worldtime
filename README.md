@@ -1,43 +1,52 @@
-# 🌍 Dünya Saatleri (World Clocks Dashboard)
+# 🌍 World Time Dashboard
 
-Modern, performans odaklı ve interaktif bir dünya saatleri kontrol paneli. Kullanıcıların farklı zaman dilimlerindeki şehirleri arayıp ekleyebildiği, verilerin tarayıcı hafızasında saklandığı dinamik bir Next.js uygulamasıdır.
+A vintage-styled, elegant world clock application built with modern web technologies. Designed with an antique wooden aesthetic, it allows users to search, add, and monitor multiple global time zones seamlessly with smooth analog clock mechanics.
+
+## 🚀 Features
+
+*   **Antique Wooden Aesthetic:** Custom-crafted vintage design featuring dark mahogany wood panels, parchment-textured clock faces, and classic iron hands.
+*   **Fuzzy Search Engine:** Powered by `fuse.js` with typo tolerance (e.g., searching "Angara" automatically resolves to "Ankara"), including keyword and multi-language support.
+*   **Smooth Analog Mechanics:** Real-time synchronized clock hands (hour, minute, and second) mathematically calculated and rendered using SVG.
+*   **Persistent Dashboard:** User-selected time zones are safely stored in browser `localStorage`, ensuring preferences remain intact across page reloads.
+*   **Keyboard Accessibility:** Instant selection of search results using the `Enter` key without requiring mouse interaction.
+*   **Global Coverage:** Includes all 81 provinces of Turkey, European capitals/metropolitan areas, and major world capitals.
+
+## 🛠️ Tech Stack
+
+*   **Framework:** Next.js (App Router)
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS
+*   **Search Engine:** Fuse.js
+*   **Deployment:** Vercel
+
+---
+
+# 🌍 Dünya Saatleri Paneli
+
+Modern web teknolojileriyle geliştirilmiş, antika ahşap temalı zarif bir dünya saatleri uygulaması. Kullanıcıların pürüzsüz analog saat mekanizmalarıyla farklı zaman dilimlerini arayıp ekleyebileceği klasik bir koleksiyon aracıdır.
 
 ## 🚀 Özellikler
 
-*   **Bulanık Arama (Fuzzy Search):** `fuse.js` entegrasyonu sayesinde yazım hatalarını tolere eden (ör: "Angara" -> "Ankara") akıllı arama motoru.
-*   **Dinamik Analog Saatler:** Akrep, yelkovan ve saniye açılarının 360 derece üzerinden matematiksel olarak hesaplanıp SVG ile çizildiği pürüzsüz analog saatler.
-*   **Kalıcı Hafıza (Local Storage):** Kullanıcının seçtiği saatlerin sayfayı yenilese dahi kaybolmaması.
-*   **Klavye Erişilebilirliği:** Arama çubuğunda fareye ihtiyaç duymadan Enter tuşu ile otomatik şehir seçimi.
-*   **Responsive Tasarım:** Tailwind CSS ile tüm cihaz ekranlarına tam uyum.
+*   **Antika Ahşap Tasarım:** Maun ahşap paneller, parşömen dokulu kadranlar ve ferforje akrep/yelkovan detaylarıyla özel vintage konsepti.
+*   **Bulanık Arama (Fuzzy Search):** Yazım hatalarını tolere eden `fuse.js` entegrasyonu (örn: "Angara" yazarak Ankara'ya ulaşma imkanı).
+*   **Dinamik Analog Saatler:** 360 derece matematiksel açılarla hesaplanan, SVG tabanlı senkronize akrep, yelkovan ve saniye çubukları.
+*   **Kalıcı Hafıza (Local Storage):** Seçilen saatlerin sayfayı yenilese dahi tarayıcıda saklanması.
+*   **Klavye Erişilebilirliği:** Arama çubuğunda fareye gerek kalmadan `Enter` tuşuyla hızlı şehir seçimi.
+*   **Kapsamlı Arşiv:** Türkiye'nin 81 ili, Avrupa'nın tüm büyük metropolleri ve dünya başkentleri.
 
-## 🛠️ Teknoloji Yığını (Tech Stack)
+## 💻 Local Setup
 
-*   **Framework:** Next.js (App Router)
-*   **Dil:** TypeScript
-*   **Stil:** Tailwind CSS
-*   **Arama Motoru:** Fuse.js
-*   **Yayınlama (Deploy):** Vercel
-
-## 🧠 Mimari ve Mühendislik Yaklaşımı
-
-Bu projede sadece çalışan bir arayüz yapmak yerine, sektör standartlarında performans optimizasyonları ve mimari kararlar alınmıştır:
-
-1.  **Single Source of Truth (Tek Doğru Kaynağı):** Ekranda onlarca saat olsa bile her biri için ayrı bir kronometre çalıştırılmaz. İşlemci (CPU) yükünü sıfıra indirmek ve tam senkronizasyon sağlamak adına tek bir global `setInterval` üzerinden tüm bileşenler beslenir. Saat kartları (ClockCard) veriyi sadece prop olarak alan "Dumb Component" yapısında kurgulanmıştır.
-2.  **Hydration Uyuşmazlık Çözümü:** Next.js'in Sunucu Taraflı Oluşturma (SSR) yapısı ile tarayıcı hafızası (localStorage) arasındaki doğal uyuşmazlık sorunu, `useEffect` ve `isLoaded` state yönetimi ile profesyonelce çözülmüştür.
-
-## 💻 Yerel Kurulum (Local Setup)
-
-Projeyi kendi bilgisayarınızda test etmek isterseniz şu adımları izleyebilirsiniz:
+If you want to run this project locally, follow these steps:
 
 ```bash
-# 1. Repoyu bilgisayarınıza indirin
-git clone [https://github.com/KULLANICI_ADINIZ/dunya-saatleri.git](https://github.com/KULLANICI_ADINIZ/dunya-saatleri.git)
+# 1. Clone the repository
+git clone [https://github.com/EmreGuezel/worldtime.git](https://github.com/EmreGuezel/worldtime.git)
 
-# 2. Proje klasörüne girin
-cd dunya-saatleri
+# 2. Navigate to the project directory
+cd worldtime
 
-# 3. Gerekli kütüphaneleri (bağımlılıkları) yükleyin
+# 3. Install dependencies
 npm install
 
-# 4. Geliştirme sunucusunu başlatın
+# 4. Run the development server
 npm run dev
