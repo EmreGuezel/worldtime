@@ -24,8 +24,8 @@ export default function Home() {
       setClocks(JSON.parse(savedClocks));
     } else {
       setClocks([
-        { city: "Cenevre", timezone: "Europe/Zurich", keywords: ["cenevre", "geneva", "isviçre"] },
-        { city: "Londra", timezone: "Europe/London", keywords: [] }
+        { city: "Londra", timezone: "Europe/London", keywords: [] },
+        { city: "Cenevre", timezone: "Europe/Zurich", keywords: ["cenevre", "geneva", "isviçre"] }
       ]);
     }
     setIsLoaded(true);
@@ -54,20 +54,17 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8 md:p-16">
       <div className="max-w-6xl mx-auto">
-        {/* Başlıkta lüks fontumuzu (font-serif) ve altın rengini kullanıyoruz */}
-        <h1 className="text-4xl md:text-5xl font-serif text-center text-amber-500 mb-3 tracking-wide">
-          Chronomètre
+        
+        {/* SADE VE ESKİ TİP BAŞLIK */}
+        <h1 className="text-4xl md:text-5xl font-serif text-center text-[#d4af37] mb-12 tracking-widest drop-shadow-sm">
+          World Time
         </h1>
-        <div className="w-24 h-px bg-amber-500/50 mx-auto mb-4"></div>
-        <p className="text-center text-zinc-500 mb-12 font-light tracking-widest uppercase text-sm">
-          Özel Zaman Dilimi Koleksiyonu
-        </p>
         
         <SearchBar onAdd={handleAddClock} />
 
         {!isLoaded ? (
-          <div className="flex justify-center text-amber-500/50 font-serif italic">
-            Mekanizma kuruluyor...
+          <div className="flex justify-center text-[#8a6a4b] font-serif italic">
+            Yükleniyor...
           </div>
         ) : (
           <div className="flex flex-wrap justify-center gap-10">
@@ -80,12 +77,6 @@ export default function Home() {
                 onRemove={handleRemoveClock} 
               />
             ))}
-            
-            {clocks.length === 0 && (
-               <div className="text-zinc-600 mt-10 font-serif italic">
-                 Koleksiyonunuz boş. Yeni bir zaman dilimi ekleyin.
-               </div>
-            )}
           </div>
         )}
       </div>

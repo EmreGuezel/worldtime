@@ -43,26 +43,27 @@ export default function SearchBar({ onAdd }: SearchBarProps) {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto mb-16">
+    <div className="relative w-full max-w-md mx-auto mb-16 shadow-[0_8px_30px_rgb(0,0,0,0.5)] rounded">
       <input
         type="text"
         value={searchTerm}
         onChange={handleSearch}
         onKeyDown={handleKeyDown}
-        placeholder="Şehir veya ülke ara..."
-        className="w-full px-5 py-4 bg-zinc-900/50 rounded border border-zinc-800 text-amber-50 focus:outline-none focus:border-amber-700 focus:bg-zinc-900 transition-all shadow-inner placeholder-zinc-600 font-serif"
+        placeholder="Şehir arayın..."
+        // Ahşap tonları ve mat kenarlıklar
+        className="w-full px-5 py-4 bg-[#2b1c13] rounded border-2 border-[#4a3020] text-[#e3d3b9] focus:outline-none focus:border-[#d4af37] transition-all shadow-inner placeholder-[#73553c] font-serif"
       />
 
       {results.length > 0 && (
-        <ul className="absolute z-10 w-full mt-2 bg-zinc-900 border border-zinc-800 rounded shadow-2xl max-h-60 overflow-y-auto">
+        <ul className="absolute z-10 w-full mt-2 bg-[#2b1c13] border-2 border-[#4a3020] rounded shadow-2xl max-h-60 overflow-y-auto">
           {results.map((loc, index) => (
             <li
               key={index}
               onClick={() => handleSelect(loc)}
-              className="px-5 py-4 hover:bg-zinc-800 cursor-pointer text-zinc-300 font-serif border-b border-zinc-800/50 last:border-0 flex justify-between items-center transition-colors"
+              className="px-5 py-4 hover:bg-[#3d261a] cursor-pointer text-[#e3d3b9] font-serif border-b border-[#4a3020] last:border-0 flex justify-between items-center transition-colors"
             >
               <span>{loc.city}</span> 
-              <span className="text-xs text-amber-700 font-sans tracking-wider">{loc.timezone}</span>
+              <span className="text-xs text-[#d4af37] font-sans tracking-wider">{loc.timezone}</span>
             </li>
           ))}
         </ul>

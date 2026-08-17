@@ -10,7 +10,7 @@ interface ClockCardProps {
 export default function ClockCard({ city, timezone, time, onRemove }: ClockCardProps) {
   
   if (!time) {
-    return <div className="p-8 bg-zinc-900/50 rounded-full border border-zinc-800 w-72 h-96 animate-pulse"></div>;
+    return <div className="p-8 bg-[#2b1c13] rounded border-2 border-[#4a3020] w-72 h-96 animate-pulse"></div>;
   }
 
   const timeFormatter = new Intl.DateTimeFormat("en-US", {
@@ -32,62 +32,65 @@ export default function ClockCard({ city, timezone, time, onRemove }: ClockCardP
   const hourAngle = (h % 12) * 30 + m * 0.5;
 
   return (
-    <div className="relative group p-8 bg-gradient-to-b from-zinc-800 to-zinc-950 rounded shadow-2xl border border-zinc-800 flex flex-col items-center hover:border-amber-700/50 transition-all duration-500 min-w-[280px]">
+    // Ahşap panel görünümü için gradient ve inset shadow
+    <div className="relative group p-8 bg-gradient-to-br from-[#3e271a] to-[#1c110a] rounded shadow-[8px_8px_20px_rgba(0,0,0,0.8),inset_0_0_15px_rgba(0,0,0,0.5)] border-2 border-[#5e3a24] flex flex-col items-center transition-all duration-300 min-w-[280px]">
       
       <button 
         onClick={() => onRemove(city)}
-        className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center text-zinc-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:text-amber-500 font-sans"
+        className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center text-[#8a6a4b] rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#d4af37] font-sans"
         title="Kaldır"
       >
         ✕
       </button>
 
-      {/* Şehir ismini klasik lüks saat kadranlarındaki logolar gibi şekillendirdik */}
-      <h2 className="text-xl font-serif text-amber-500 mb-6 tracking-[0.2em] uppercase font-medium">
+      {/* Şehir ismi - Pirinç levha hissiyatı */}
+      <h2 className="text-xl font-serif text-[#d4af37] mb-6 tracking-widest uppercase font-medium drop-shadow-md">
         {city}
       </h2>
       
-      {/* KLASİK ANALOG KADRAN */}
-      <div className="relative w-48 h-48 mb-8 drop-shadow-2xl">
-        <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
+      {/* GERÇEKÇİ ANTİKA KADRAN */}
+      <div className="relative w-52 h-52 mb-8 drop-shadow-2xl">
+        <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90 shadow-inner">
           
-          {/* Saatin Kasası ve Siyah Kadranı */}
-          <circle cx="50" cy="50" r="48" fill="#09090b" stroke="#3f3f46" strokeWidth="2" />
-          {/* İç Altın Çerçeve */}
-          <circle cx="50" cy="50" r="45" fill="transparent" stroke="#b45309" strokeWidth="0.5" opacity="0.5" />
+          {/* En dış kalın ahşap kasa */}
+          <circle cx="50" cy="50" r="48" fill="#f4e8d3" stroke="#2d1a11" strokeWidth="6" />
           
-          {/* Klasik Saat Çizgileri (Sadece 12, 3, 6, 9 daha kalın ve uzun) */}
+          {/* İç kısımdaki ince altın/pirinç çerçeve */}
+          <circle cx="50" cy="50" r="44" fill="transparent" stroke="#b89047" strokeWidth="0.75" />
+          
+          {/* Antika Saat Çizgileri (Koyu kahve/siyah) */}
           {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => (
             <line 
               key={i} 
-              x1={i % 3 === 0 ? "88" : "92"} 
+              x1={i % 3 === 0 ? "85" : "90"} 
               y1="50" 
-              x2="95" 
+              x2="94" 
               y2="50" 
               transform={`rotate(${angle} 50 50)`} 
-              stroke={i % 3 === 0 ? "#d97706" : "#71717a"} 
-              strokeWidth={i % 3 === 0 ? "2" : "1"} 
+              stroke="#2d1a11" 
+              strokeWidth={i % 3 === 0 ? "2.5" : "1"} 
+              strokeLinecap="round"
             />
           ))}
 
-          {/* Akrep (Hour Hand) - Daha kalın ve zarif */}
-          <line x1="50" y1="50" x2="72" y2="50" transform={`rotate(${hourAngle} 50 50)`} stroke="#fbbf24" strokeWidth="3" strokeLinecap="round" />
+          {/* Akrep (Koyu demir rengi, klasik yuvarlatılmış) */}
+          <line x1="50" y1="50" x2="72" y2="50" transform={`rotate(${hourAngle} 50 50)`} stroke="#1a110b" strokeWidth="4" strokeLinecap="round" />
           
-          {/* Yelkovan (Minute Hand) */}
-          <line x1="50" y1="50" x2="86" y2="50" transform={`rotate(${minuteAngle} 50 50)`} stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+          {/* Yelkovan */}
+          <line x1="50" y1="50" x2="88" y2="50" transform={`rotate(${minuteAngle} 50 50)`} stroke="#1a110b" strokeWidth="2.5" strokeLinecap="round" />
           
-          {/* Saniye (Second Hand) - Zarif kırmızı detay */}
-          <line x1="45" y1="50" x2="90" y2="50" transform={`rotate(${secondAngle} 50 50)`} stroke="#991b1b" strokeWidth="1" />
+          {/* Saniye (Eski saatlerdeki gibi ince ve bakır/kızıl tonlarında) */}
+          <line x1="38" y1="50" x2="90" y2="50" transform={`rotate(${secondAngle} 50 50)`} stroke="#8c2a1c" strokeWidth="1" />
           
-          {/* Göbek Noktası (Altın) */}
-          <circle cx="50" cy="50" r="2.5" fill="#fbbf24" />
-          {/* Göbek Noktası İç (Siyah) */}
-          <circle cx="50" cy="50" r="1" fill="#09090b" />
+          {/* Orta göbek pimi (Pirinç) */}
+          <circle cx="50" cy="50" r="3.5" fill="#b89047" />
+          {/* Orta pim siyah nokta */}
+          <circle cx="50" cy="50" r="1.5" fill="#1a110b" />
         </svg>
       </div>
       
-      {/* Alt kısımdaki dijital saat çok daha ince ve zarif */}
-      <div className="text-sm font-sans tracking-widest text-zinc-500 border border-zinc-800/50 px-4 py-1 rounded">
+      {/* Dijital saat göstergesi (Eski daktilo/oyma fontu hissiyatı) */}
+      <div className="text-sm font-sans tracking-widest text-[#8a6a4b] bg-[#1a0f0a] px-4 py-1.5 border border-[#3d261a] rounded shadow-inner">
         {time.toLocaleTimeString("tr-TR", { timeZone: timezone })}
       </div>
     </div>
