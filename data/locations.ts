@@ -6,7 +6,7 @@ export interface LocationData {
 
 export const locations: LocationData[] = [
   // ==========================================
-  // 🇹🇷 TÜRKİYE'NİN 81 İLİ (Tam Liste)
+  // 🇹🇷 TÜRKİYE'NİN 81 İLİ
   // ==========================================
   { city: "Adana", timezone: "Europe/Istanbul", keywords: ["adana", "türkiye", "turkey"] },
   { city: "Adıyaman", timezone: "Europe/Istanbul", keywords: ["adıyaman", "türkiye"] },
@@ -91,33 +91,81 @@ export const locations: LocationData[] = [
   { city: "Düzce", timezone: "Europe/Istanbul", keywords: ["düzce", "türkiye"] },
 
   // ==========================================
-  // 🇪🇺 AVRUPA BAŞKENTLERİ
+  // 🇪🇺 AVRUPA BAŞKENTLERİ VE BÜYÜK METROPOLLER
   // ==========================================
+  // İngiltere / İskoçya
   { city: "Londra", timezone: "Europe/London", keywords: ["london", "ingiltere", "uk", "england"] },
-  { city: "Paris", timezone: "Europe/Paris", keywords: ["fransa", "france"] },
-  { city: "Berlin", timezone: "Europe/Berlin", keywords: ["almanya", "germany"] },
-  { city: "Roma", timezone: "Europe/Rome", keywords: ["rome", "italya", "italy"] },
-  { city: "Madrid", timezone: "Europe/Madrid", keywords: ["ispanya", "spain"] },
-  { city: "Amsterdam", timezone: "Europe/Amsterdam", keywords: ["hollanda", "netherlands"] },
-  { city: "Brüksel", timezone: "Europe/Brussels", keywords: ["brussels", "belçika", "belgium"] },
-  { city: "Viyana", timezone: "Europe/Vienna", keywords: ["vienna", "avusturya", "austria"] },
-  { city: "Bern", timezone: "Europe/Zurich", keywords: ["isviçre", "switzerland"] },
-  { city: "Stokholm", timezone: "Europe/Stockholm", keywords: ["stockholm", "isveç", "sweden"] },
-  { city: "Oslo", timezone: "Europe/Oslo", keywords: ["norveç", "norway"] },
-  { city: "Kopenhag", timezone: "Europe/Copenhagen", keywords: ["copenhagen", "danimarka", "denmark"] },
-  { city: "Helsinki", timezone: "Europe/Helsinki", keywords: ["finlandiya", "finland"] },
-  { city: "Atina", timezone: "Europe/Athens", keywords: ["athens", "yunanistan", "greece"] },
-  { city: "Varşova", timezone: "Europe/Warsaw", keywords: ["warsaw", "polonya", "poland"] },
-  { city: "Prag", timezone: "Europe/Prague", keywords: ["prague", "çekya", "czech"] },
-  { city: "Budapeşte", timezone: "Europe/Budapest", keywords: ["budapest", "macaristan", "hungary"] },
-  { city: "Lizbon", timezone: "Europe/Lisbon", keywords: ["lisbon", "portekiz", "portugal"] },
-  { city: "Dublin", timezone: "Europe/Dublin", keywords: ["irlanda", "ireland"] },
-  { city: "Moskova", timezone: "Europe/Moscow", keywords: ["moscow", "rusya", "russia"] },
-  { city: "Kiev", timezone: "Europe/Kiev", keywords: ["kyiv", "ukrayna", "ukraine"] },
-  { city: "Bükreş", timezone: "Europe/Bucharest", keywords: ["bucharest", "romanya", "romania"] },
-  { city: "Sofya", timezone: "Europe/Sofia", keywords: ["sofia", "bulgaristan", "bulgaria"] },
-  { city: "Belgrad", timezone: "Europe/Belgrade", keywords: ["belgrade", "sırbistan", "serbia"] },
-  { city: "Saraybosna", timezone: "Europe/Sarajevo", keywords: ["sarajevo", "bosna", "bosnia"] },
+  { city: "Manchester", timezone: "Europe/London", keywords: ["ingiltere", "uk", "england"] },
+  { city: "Liverpool", timezone: "Europe/London", keywords: ["ingiltere", "uk", "england"] },
+  { city: "Birmingham", timezone: "Europe/London", keywords: ["ingiltere", "uk", "england"] },
+  { city: "Edinburgh", timezone: "Europe/London", keywords: ["iskoçya", "scotland", "uk"] },
+  { city: "Glasgow", timezone: "Europe/London", keywords: ["iskoçya", "scotland", "uk"] },
+  
+  // Almanya
+  { city: "Berlin", timezone: "Europe/Berlin", keywords: ["almanya", "germany", "başkent"] },
+  { city: "Münih", timezone: "Europe/Berlin", keywords: ["munich", "münchen", "almanya", "germany"] },
+  { city: "Frankfurt", timezone: "Europe/Berlin", keywords: ["almanya", "germany"] },
+  { city: "Hamburg", timezone: "Europe/Berlin", keywords: ["almanya", "germany"] },
+  { city: "Köln", timezone: "Europe/Berlin", keywords: ["cologne", "almanya", "germany"] },
+  { city: "Stuttgart", timezone: "Europe/Berlin", keywords: ["almanya", "germany"] },
+
+  // Fransa
+  { city: "Paris", timezone: "Europe/Paris", keywords: ["fransa", "france", "başkent"] },
+  { city: "Marsilya", timezone: "Europe/Paris", keywords: ["marseille", "fransa", "france"] },
+  { city: "Lyon", timezone: "Europe/Paris", keywords: ["fransa", "france"] },
+  { city: "Toulouse", timezone: "Europe/Paris", keywords: ["fransa", "france"] },
+  { city: "Nice", timezone: "Europe/Paris", keywords: ["fransa", "france"] },
+
+  // İtalya
+  { city: "Roma", timezone: "Europe/Rome", keywords: ["rome", "italya", "italy", "başkent"] },
+  { city: "Milano", timezone: "Europe/Rome", keywords: ["milan", "italya", "italy"] },
+  { city: "Napoli", timezone: "Europe/Rome", keywords: ["naples", "italya", "italy"] },
+  { city: "Torino", timezone: "Europe/Rome", keywords: ["turin", "italya", "italy"] },
+  { city: "Floransa", timezone: "Europe/Rome", keywords: ["florence", "firenze", "italya", "italy"] },
+  { city: "Venedik", timezone: "Europe/Rome", keywords: ["venice", "venezia", "italya", "italy"] },
+
+  // İspanya & Portekiz
+  { city: "Madrid", timezone: "Europe/Madrid", keywords: ["ispanya", "spain", "başkent"] },
+  { city: "Barselona", timezone: "Europe/Madrid", keywords: ["barcelona", "ispanya", "spain"] },
+  { city: "Valensiya", timezone: "Europe/Madrid", keywords: ["valencia", "ispanya", "spain"] },
+  { city: "Sevilla", timezone: "Europe/Madrid", keywords: ["seville", "ispanya", "spain"] },
+  { city: "Lizbon", timezone: "Europe/Lisbon", keywords: ["lisbon", "portekiz", "portugal", "başkent"] },
+  { city: "Porto", timezone: "Europe/Lisbon", keywords: ["oportu", "portekiz", "portugal"] },
+
+  // Diğer Batı/Orta Avrupa Metropolleri
+  { city: "Amsterdam", timezone: "Europe/Amsterdam", keywords: ["hollanda", "netherlands", "başkent"] },
+  { city: "Rotterdam", timezone: "Europe/Amsterdam", keywords: ["hollanda", "netherlands"] },
+  { city: "Brüksel", timezone: "Europe/Brussels", keywords: ["brussels", "belçika", "belgium", "başkent"] },
+  { city: "Anvers", timezone: "Europe/Brussels", keywords: ["antwerp", "belçika", "belgium"] },
+  { city: "Viyana", timezone: "Europe/Vienna", keywords: ["vienna", "avusturya", "austria", "başkent"] },
+  { city: "Salzburg", timezone: "Europe/Vienna", keywords: ["avusturya", "austria"] },
+  { city: "Bern", timezone: "Europe/Zurich", keywords: ["isviçre", "switzerland", "başkent"] },
+  { city: "Cenevre", timezone: "Europe/Zurich", keywords: ["geneva", "isviçre", "switzerland"] },
+  { city: "Zürih", timezone: "Europe/Zurich", keywords: ["zurich", "isviçre", "switzerland"] },
+
+  // Kuzey Avrupa
+  { city: "Stokholm", timezone: "Europe/Stockholm", keywords: ["stockholm", "isveç", "sweden", "başkent"] },
+  { city: "Göteborg", timezone: "Europe/Stockholm", keywords: ["gothenburg", "isveç", "sweden"] },
+  { city: "Oslo", timezone: "Europe/Oslo", keywords: ["norveç", "norway", "başkent"] },
+  { city: "Bergen", timezone: "Europe/Oslo", keywords: ["norveç", "norway"] },
+  { city: "Kopenhag", timezone: "Europe/Copenhagen", keywords: ["copenhagen", "danimarka", "denmark", "başkent"] },
+  { city: "Helsinki", timezone: "Europe/Helsinki", keywords: ["finlandiya", "finland", "başkent"] },
+
+  // Doğu/Güneydoğu Avrupa
+  { city: "Atina", timezone: "Europe/Athens", keywords: ["athens", "yunanistan", "greece", "başkent"] },
+  { city: "Selanik", timezone: "Europe/Athens", keywords: ["thessaloniki", "yunanistan", "greece"] },
+  { city: "Varşova", timezone: "Europe/Warsaw", keywords: ["warsaw", "polonya", "poland", "başkent"] },
+  { city: "Krakov", timezone: "Europe/Warsaw", keywords: ["krakow", "polonya", "poland"] },
+  { city: "Prag", timezone: "Europe/Prague", keywords: ["prague", "çekya", "czech", "başkent"] },
+  { city: "Budapeşte", timezone: "Europe/Budapest", keywords: ["budapest", "macaristan", "hungary", "başkent"] },
+  { city: "Bükreş", timezone: "Europe/Bucharest", keywords: ["bucharest", "romanya", "romania", "başkent"] },
+  { city: "Sofya", timezone: "Europe/Sofia", keywords: ["sofia", "bulgaristan", "bulgaria", "başkent"] },
+  { city: "Belgrad", timezone: "Europe/Belgrade", keywords: ["belgrade", "sırbistan", "serbia", "başkent"] },
+  { city: "Saraybosna", timezone: "Europe/Sarajevo", keywords: ["sarajevo", "bosna", "bosnia", "başkent"] },
+  { city: "Moskova", timezone: "Europe/Moscow", keywords: ["moscow", "rusya", "russia", "başkent"] },
+  { city: "St. Petersburg", timezone: "Europe/Moscow", keywords: ["saint petersburg", "rusya", "russia"] },
+  { city: "Kiev", timezone: "Europe/Kiev", keywords: ["kyiv", "ukrayna", "ukraine", "başkent"] },
+  { city: "Dublin", timezone: "Europe/Dublin", keywords: ["irlanda", "ireland", "başkent"] },
 
   // ==========================================
   // 🌍 DÜNYA BAŞKENTLERİ (Amerika, Asya, Afrika, Okyanusya)
