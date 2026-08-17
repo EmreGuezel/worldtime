@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Dünya Saatleri (World Clocks Dashboard)
 
-## Getting Started
+Modern, performans odaklı ve interaktif bir dünya saatleri kontrol paneli. Kullanıcıların farklı zaman dilimlerindeki şehirleri arayıp ekleyebildiği, verilerin tarayıcı hafızasında saklandığı dinamik bir Next.js uygulamasıdır.
 
-First, run the development server:
+## 🚀 Özellikler
+
+*   **Bulanık Arama (Fuzzy Search):** `fuse.js` entegrasyonu sayesinde yazım hatalarını tolere eden (ör: "Angara" -> "Ankara") akıllı arama motoru.
+*   **Dinamik Analog Saatler:** Akrep, yelkovan ve saniye açılarının 360 derece üzerinden matematiksel olarak hesaplanıp SVG ile çizildiği pürüzsüz analog saatler.
+*   **Kalıcı Hafıza (Local Storage):** Kullanıcının seçtiği saatlerin sayfayı yenilese dahi kaybolmaması.
+*   **Klavye Erişilebilirliği:** Arama çubuğunda fareye ihtiyaç duymadan Enter tuşu ile otomatik şehir seçimi.
+*   **Responsive Tasarım:** Tailwind CSS ile tüm cihaz ekranlarına tam uyum.
+
+## 🛠️ Teknoloji Yığını (Tech Stack)
+
+*   **Framework:** Next.js (App Router)
+*   **Dil:** TypeScript
+*   **Stil:** Tailwind CSS
+*   **Arama Motoru:** Fuse.js
+*   **Yayınlama (Deploy):** Vercel
+
+## 🧠 Mimari ve Mühendislik Yaklaşımı
+
+Bu projede sadece çalışan bir arayüz yapmak yerine, sektör standartlarında performans optimizasyonları ve mimari kararlar alınmıştır:
+
+1.  **Single Source of Truth (Tek Doğru Kaynağı):** Ekranda onlarca saat olsa bile her biri için ayrı bir kronometre çalıştırılmaz. İşlemci (CPU) yükünü sıfıra indirmek ve tam senkronizasyon sağlamak adına tek bir global `setInterval` üzerinden tüm bileşenler beslenir. Saat kartları (ClockCard) veriyi sadece prop olarak alan "Dumb Component" yapısında kurgulanmıştır.
+2.  **Hydration Uyuşmazlık Çözümü:** Next.js'in Sunucu Taraflı Oluşturma (SSR) yapısı ile tarayıcı hafızası (localStorage) arasındaki doğal uyuşmazlık sorunu, `useEffect` ve `isLoaded` state yönetimi ile profesyonelce çözülmüştür.
+
+## 💻 Yerel Kurulum (Local Setup)
+
+Projeyi kendi bilgisayarınızda test etmek isterseniz şu adımları izleyebilirsiniz:
 
 ```bash
+# 1. Repoyu bilgisayarınıza indirin
+git clone [https://github.com/KULLANICI_ADINIZ/dunya-saatleri.git](https://github.com/KULLANICI_ADINIZ/dunya-saatleri.git)
+
+# 2. Proje klasörüne girin
+cd dunya-saatleri
+
+# 3. Gerekli kütüphaneleri (bağımlılıkları) yükleyin
+npm install
+
+# 4. Geliştirme sunucusunu başlatın
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
